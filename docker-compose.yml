@@ -1,0 +1,18 @@
+version: '3'
+services:
+
+  ai_flask:
+    container_name: ai_flask
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+    entrypoint:
+      - sh
+      - entrypoint.sh
+
+volumes:
+  app:
