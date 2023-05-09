@@ -12,7 +12,7 @@ RUN pip install --upgrade pip
 COPY requirements.txt /requirements.txt
 RUN pip install -r requirements.txt
 
-COPY ./config/docker/entrypoint.prod.sh $APP_HOME
+COPY ./config/docker/entrypoint.sh $APP_HOME
 COPY . $APP_HOME
 RUN chown -R app:app $APP_HOME
 USER app
