@@ -9,7 +9,7 @@ RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
 
 RUN pip install --upgrade pip
-COPY requirements.txt /requirements.txt
+COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 
 COPY ./config/docker/entrypoint.sh $APP_HOME
