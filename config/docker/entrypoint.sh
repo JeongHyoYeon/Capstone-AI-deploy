@@ -1,2 +1,4 @@
 #!/bin/bash
-python app.py
+cd flask
+gunicorn wsgi:app
+
