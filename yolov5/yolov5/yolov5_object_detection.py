@@ -6,9 +6,6 @@ from pathlib import Path
 
 import torch
 
-import pathlib
-pathlib.PosixPath = os.path
-
 #YOLO_PATH = "/home/ubuntu/Capstone-CV-YOLOv5/yolov5/"
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 YOLO_PATH = os.path.join(BASE_DIR, 'yolov5/')
