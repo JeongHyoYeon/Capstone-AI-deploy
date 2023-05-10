@@ -27,3 +27,7 @@ def yolo():
     payload = request.get_json()
     result = run_yolov5(payload['image_list'])
     return jsonify(result)
+
+
+if __name__ == "__main__":
+    app.run(debug=True)

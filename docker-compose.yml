@@ -8,6 +8,4 @@ services:
       dockerfile: Dockerfile
     ports:
       - "5000:5000"
-    entrypoint:
-      - sh
-      - config/docker/entrypoint.sh
+    command: gunicorn app:app --bind 0.0.0.0:5000
