@@ -7,5 +7,5 @@ services:
       context: ./
       dockerfile: Dockerfile
     command: gunicorn app:app --bind 0.0.0.0:5000
-    expose:
-      - 5000
+    ports:
+      - "5000:5000"
