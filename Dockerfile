@@ -28,7 +28,7 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 RUN mkdir -p /home/app
-RUN addgroup -S app && adduser -S app -G app
+RUN adduser --system --group app
 ENV HOME=/home/app
 ENV APP_HOME=/home/app/ai
 RUN mkdir $APP_HOME
