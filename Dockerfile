@@ -40,7 +40,7 @@ RUN apt-get update -y && apt-get install -y build-essential libglib2.0-0 libgl1-
 RUN pip install --upgrade pip
 RUN pip install --no-cache /wheels/*
 
-COPY ./config/docker/entrypoint.prod.sh $APP_HOME
+COPY ./config/docker/entrypoint.sh $APP_HOME
 COPY . $APP_HOME
 RUN chown -R app:app $APP_HOME
 USER app
