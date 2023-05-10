@@ -15,11 +15,10 @@ def face():
     payload = request.get_json()
     result = face_recognition(payload['image_list'])
     response = {
-        'group': result[0],
         'group_idx_list': result[1],
         'images': result[2]
     }
-    return jsonify(response)
+    return response
 
 
 @app.route('/yolo', methods=['POST'])
