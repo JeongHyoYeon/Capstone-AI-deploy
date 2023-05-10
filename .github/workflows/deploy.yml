@@ -32,11 +32,6 @@ jobs:
         remote_user: ubuntu
         remote_key: ${{ secrets.KEY }}
 
-    - name: docker prune
-      run: |
-        echo "docker system prune"
-        sudo docker system prune -f
-
     - name: executing remote ssh commands using password
       uses: appleboy/ssh-action@master
       with:
