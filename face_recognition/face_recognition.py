@@ -17,9 +17,6 @@ import torchvision.transforms as transforms
 
 from backbone import Backbone
 
-from flask import Flask
-app = Flask(__name__)
-
 #----------------------------------------------------------
 #                        functions 
 #----------------------------------------------------------
@@ -293,7 +290,6 @@ def grouping(faces, images, cosine_similaritys, cos_similarity_threshold) :
 #----------------------------------------------------------
 #                        main 
 #----------------------------------------------------------
-@app.route('/face')
 def face_recognition(images):
     """
     FaceRecognition으로 FaceGrouping하는 main 함수.

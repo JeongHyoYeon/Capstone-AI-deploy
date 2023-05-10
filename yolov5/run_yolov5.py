@@ -9,9 +9,6 @@ import shutil
 from yolov5.yolov5_scene_classification import run_yolov5_scene
 from yolov5.yolov5_object_detection import run_yolov5_object
 
-from flask import Flask
-app = Flask(__name__)
-
 def download_images(images, images_folder_path, re_download):
   # 폴더 생성
   if os.path.exists(images_folder_path):
@@ -32,7 +29,6 @@ def print_images_dict(images):
         print(img)
         print(" ")
 
-@app.route('/yolo')
 def run_yolov5(images):
     """
       pretrained yolov5 모델로
