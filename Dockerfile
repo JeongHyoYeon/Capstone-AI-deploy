@@ -39,6 +39,7 @@ COPY --from=builder /usr/src/app/requirements.txt .
 RUN apt-get update -y && apt-get install -y build-essential libglib2.0-0 libgl1-mesa-glx ffmpeg libsm6 libxext6
 RUN pip install --upgrade pip
 RUN pip install --no-cache /wheels/*
+RUN pip install -U numpy
 
 COPY . $APP_HOME
 RUN chown -R app:app $APP_HOME
