@@ -15,7 +15,7 @@ import torchvision.datasets as datasets
 import torch.nn.functional as F
 import torchvision.transforms as transforms
 
-from backbone import Backbone
+from .backbone import Backbone
 
 #----------------------------------------------------------
 #                        functions 
