@@ -1,5 +1,5 @@
 Flask==2.3.2
-matplotlib==3.2.1
+matplotlib==3.3.0
 mtcnn==0.1.1
 numpy==1.21.6
 opencv-python-headless==4.5.5.64

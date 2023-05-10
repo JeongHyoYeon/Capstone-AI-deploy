@@ -10,11 +10,6 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-    - name: docker prune
-      run: |
-        echo "docker system prune"
-        sudo docker system prune -f
-
     - name: checkout
       uses: actions/checkout@master
       with:
@@ -36,6 +31,11 @@ jobs:
         remote_host: ${{ secrets.HOST }}
         remote_user: ubuntu
         remote_key: ${{ secrets.KEY }}
+        
+    - name: docker prune
+      run: |
+        echo "docker system prune"
+        sudo docker system prune -f
 
     - name: executing remote ssh commands using password
       uses: appleboy/ssh-action@master

@@ -13,6 +13,7 @@ WORKDIR /usr/src/app
 
 RUN pip install --upgrade pip
 COPY ./requirements.txt .
+RUN apt-get update -y && apt-get install -y build-essential libglib2.0-0 libgl1-mesa-glx ffmpeg libsm6 libxext6
 RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels -r requirements.txt
 
 
