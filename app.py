@@ -18,14 +18,14 @@ def face():
         'group_idx_list': result[1],
         'images': result[2]
     }
-    return response
+    return response, 200
 
 
 @app.route('/yolo', methods=['POST'])
 def yolo():
     payload = request.get_json()
     result = run_yolov5(payload['image_list'])
-    return jsonify(result)
+    return jsonify(result), 200
 
 
 if __name__ == "__main__":
