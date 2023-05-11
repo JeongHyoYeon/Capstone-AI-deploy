@@ -1,46 +1,17 @@
-# BUILDER #
-###########
-
-# pull official base image
-FROM python:3.9-slim-buster as builder
-
-# set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
-
-# set work directory
-WORKDIR /usr/src/app
-
-RUN pip install --upgrade pip
-COPY ./requirements.txt .
-RUN apt-get update -y && apt-get install -y build-essential libglib2.0-0 libgl1-mesa-glx ffmpeg libsm6 libxext6
-RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels -r requirements.txt
-
-
-#########
-# FINAL #
-#########
-
-# pull official base image
 FROM python:3.9-slim-buster
-
-ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-RUN mkdir -p /home/app
-RUN adduser --system --group app
-ENV HOME=/home/app
-ENV APP_HOME=/home/app/ai
-RUN mkdir $APP_HOME
-WORKDIR $APP_HOME
+RUN mkdir /app
+WORKDIR /app
 
-COPY --from=builder /usr/src/app/wheels /wheels
-COPY --from=builder /usr/src/app/requirements.txt .
 RUN apt-get update -y && apt-get install -y build-essential libglib2.0-0 libgl1-mesa-glx ffmpeg libsm6 libxext6
 RUN pip install --upgrade pip
-RUN pip install --no-cache /wheels/*
+
+# By copying over requirements first, we make sure that Docker will cache
+# our installed requirements rather than reinstall them on every build
+COPY requirements.txt /app/requirements.txt
+RUN pip install -r requirements.txt
 RUN pip install -U numpy
 
-COPY . $APP_HOME
-RUN chown -R app:app $APP_HOME
-USER app
+# Now copy in our code, and run it
+COPY . /app/

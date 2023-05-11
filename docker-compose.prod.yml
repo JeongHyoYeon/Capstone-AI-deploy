@@ -6,6 +6,6 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile.prod
-    command: python app.py
+    command: gunicorn app:app --bind 0.0.0.0:5000
     ports:
       - "5000:5000"
