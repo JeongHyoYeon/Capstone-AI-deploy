@@ -7,6 +7,7 @@ from pathlib import Path
 import torch
 import torch.nn.functional as F
 
+
 #YOLO_PATH = "/home/ubuntu/Capstone-CV-YOLOv5/yolov5/"
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 YOLO_PATH = os.path.join(BASE_DIR, 'yolov5/')
@@ -33,7 +34,7 @@ def run_yolov5_scene(
         images,
         base_path,
         yolov5_path,
-        classification_threshold=0.4,  # probability threshold
+        classification_threshold=0.6,  # probability threshold
 
         weights=YOLO_CLONE_PATH / 'yolov5s-cls.pt',  # model.pt path(s)
         source=YOLO_CLONE_PATH / 'data/images',  # file/dir/URL/glob/screen/0(webcam)
