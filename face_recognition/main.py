@@ -60,7 +60,7 @@ def run_face_recog(images):
                     }]
     """
     input_size = 112
-    cos_similarity_threshold = 0.45
+    cos_similarity_threshold = 0.55 
     # face_recog_folder = "/content/drive/MyDrive/Capstone_Face_Test/"
 
     crop_base_folder = os.path.join(BASE_PATH, "crop_images/")
