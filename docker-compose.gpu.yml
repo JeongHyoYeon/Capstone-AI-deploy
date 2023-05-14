@@ -1,0 +1,11 @@
+version: '3'
+services:
+
+  ai_flask:
+    container_name: ai_flask
+    build:
+      context: ./
+      dockerfile: Dockerfile.gpu
+    command: gunicorn app:app --bind 0.0.0.0:5000
+    ports:
+      - "5000:5000"
