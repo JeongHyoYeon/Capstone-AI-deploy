@@ -27,4 +27,4 @@ echo "docker system prune"
 sudo docker system prune -f
 
 echo "start docker-compose up: ubuntu"
-sudo docker-compose -f /home/ubuntu/srv/ubuntu/docker-compose.yml up --build -d
+sudo docker-compose -f /home/ubuntu/srv/ubuntu/docker-compose.prod.yml up --build -d
