@@ -1,5 +1,5 @@
 # pull official base image
-FROM nvidia/cuda:11.2-base
+FROM nvidia/cuda:11.2.0-base-ubuntu20.04
 
 # Install necessary system dependencies
 RUN apt-get update -y && apt-get install -y build-essential libglib2.0-0 libgl1-mesa-glx ffmpeg libsm6 libxext6
