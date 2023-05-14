@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
-from face_recognition.face_recognition import face_recognition
-from yolov5.run_yolov5 import run_yolov5
+from face_recognition.main import run_face_recog
+from yolov5.main import run_yolov5
 
 app = Flask(__name__)
 
@@ -13,7 +13,7 @@ def home():
 @app.route('/face', methods=['POST'])
 def face():
     payload = request.get_json()
-    result = face_recognition(payload['image_list'])
+    result = run_face_recog(payload['image_list'])
     response = {
         'group_idx_list': result[1],
         'images': result[2]
