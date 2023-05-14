@@ -1,5 +1,5 @@
 # pull official base image
-FROM nvidia/cuda:11.2.0-base-ubuntu20.04
+FROM nvidia/cuda:11.8.0-base-ubuntu22.04
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV TZ=Asia/Seoul
@@ -19,9 +19,9 @@ RUN apt-get update -y && apt-get install -y build-essential libglib2.0-0 libgl1-
 RUN apt-get install -y python3.9 python3-pip
 
 # Install Python dependencies
-COPY ./requirements.txt .
+COPY ./requirements-gpu.txt .
 RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+RUN pip install -r requirements-gpu.txt
 
 # Copy the application code
 COPY . $APP_HOME
