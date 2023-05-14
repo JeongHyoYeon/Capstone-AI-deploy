@@ -18,8 +18,6 @@ from pathlib import Path
 from threading import Thread
 from urllib.parse import urlparse
 
-
-
 import numpy as np
 import psutil
 import torch
@@ -245,7 +243,7 @@ class LoadImages:
             path = Path(path).read_text().rsplit()
         files = []
         for p in sorted(path) if isinstance(path, (list, tuple)) else [path]:
-            p = os.path.abspath(p)
+            p = str(Path(p).resolve())
             if '*' in p:
                 files.extend(sorted(glob.glob(p, recursive=True)))  # glob
             elif os.path.isdir(p):
