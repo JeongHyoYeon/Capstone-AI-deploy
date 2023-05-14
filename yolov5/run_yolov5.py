@@ -89,7 +89,7 @@ def run_yolov5(images):
         images,
         YOLO_PATH,
         YOLO_CLONE_PATH,
-        weights=os.path.join(YOLO_PATH, "checkpoint/yolov5_object_100best.pt"),  # model.pt path(s)
+        weights=os.path.join(YOLO_PATH, "checkpoint/yolov5_object_100epoch_best.pt"),  # model.pt path(s)
         source=os.path.join(IMAGES_PATH, "*.jpg"),  # file/dir/URL/glob/screen/0(webcam)
         nosave=True,  # do not save images/videos
         device='cpu'
