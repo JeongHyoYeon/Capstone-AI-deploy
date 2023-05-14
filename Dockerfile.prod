@@ -1,6 +1,9 @@
 # pull official base image
 FROM python:3.9-slim-buster
 
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
 RUN mkdir -p /home/app
 RUN adduser --system --group app
 ENV HOME=/home/app
