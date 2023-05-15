@@ -3,7 +3,7 @@ name: Deploy to EC2
 on:
   push:
     branches:
-      - gpu # 잠깐 비활
+      - main
 
 jobs:
   build:
