@@ -6,6 +6,6 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile.prod
-    command: gunicorn app:app --bind 0.0.0.0:5000
+    command: gunicorn app:app --bind 0.0.0.0:5000 --timeout=300
     ports:
       - "5000:5000"

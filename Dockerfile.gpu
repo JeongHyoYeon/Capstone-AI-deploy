@@ -1,11 +1,10 @@
 # pull official base image
-FROM nvidia/cuda:11.2-base
+FROM nvidia/cuda:11.8.0-base-ubuntu22.04
 
-# Install necessary system dependencies
-RUN apt-get update -y && apt-get install -y build-essential libglib2.0-0 libgl1-mesa-glx ffmpeg libsm6 libxext6
+ENV DEBIAN_FRONTEND noninteractive
+ENV TZ=Asia/Seoul
 
-# Install Python and create necessary directories
-RUN apt-get install -y python3.9 python3-pip
+# create necessary directories
 RUN mkdir -p /home/app
 RUN adduser --system --group app
 ENV HOME=/home/app
@@ -13,10 +12,16 @@ ENV APP_HOME=/home/app/ai
 RUN mkdir $APP_HOME
 WORKDIR $APP_HOME
 
+# Install necessary system dependencies
+RUN apt-get update -y && apt-get install -y build-essential libglib2.0-0 libgl1-mesa-glx ffmpeg libsm6 libxext6
+
+# Install Python
+RUN apt-get install -y python3.9 python3-pip
+
 # Install Python dependencies
-COPY ./requirements.txt .
+COPY ./requirements-gpu.txt .
 RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+RUN pip install -r requirements-gpu.txt
 
 # Copy the application code
 COPY . $APP_HOME
