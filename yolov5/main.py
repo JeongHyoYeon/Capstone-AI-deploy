@@ -69,7 +69,7 @@ def run_yolov5(images):
     """
     print("==========START YOLOV5==========\n")
 
-    re_download = False
+    re_download = True
 
     yolov5_path = os.path.join(BASE_PATH, "yolov5/")
     images_folder_path = os.path.join(BASE_PATH, "images/")
