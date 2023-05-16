@@ -14,6 +14,7 @@ WORKDIR $APP_HOME
 
 # Install necessary system dependencies
 RUN apt-get update -y && apt-get install -y build-essential libglib2.0-0 libgl1-mesa-glx ffmpeg libsm6 libxext6
+RUN apt-get install nvidia-driver-530
 
 # Install Python
 RUN apt-get install -y python3.10 python3-pip
