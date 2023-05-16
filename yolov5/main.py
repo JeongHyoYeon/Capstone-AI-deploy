@@ -6,6 +6,7 @@ import shutil
 # yolo 기본
 # import utils
 # display = utils.notebook_init()  # checks
+import torch
 
 # yolo Classification, ObjectDetection
 import sys
@@ -72,6 +73,7 @@ def run_yolov5(images):
 
     yolov5_path = os.path.join(BASE_PATH, "yolov5/")
     images_folder_path = os.path.join(BASE_PATH, "images/")
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
     # [STEP 0. url로 이미지 다운받아 images 폴더에 저장]
     print("\n\n")
@@ -89,7 +91,7 @@ def run_yolov5(images):
         weights=os.path.join(BASE_PATH, "checkpoint/yolov5_scene_best.pt"),
         source=os.path.join(BASE_PATH, "images/*.jpg"),
         nosave=True,
-        device=0
+        device=device
     )
 
     print_images_dict(images)
@@ -104,7 +106,7 @@ def run_yolov5(images):
         weights=os.path.join(BASE_PATH, "checkpoint/yolov5s.pt"),
         source=os.path.join(BASE_PATH, "images/*.jpg"),
         nosave=True,
-        device=0
+        device=device
     )
 
     print_images_dict(images)
