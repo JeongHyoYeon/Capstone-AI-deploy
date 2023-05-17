@@ -23,8 +23,8 @@ ENV PYTHONUNBUFFERED 1
 
 
 RUN pip install --upgrade pip
-COPY ./requirements.txt .
-RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels -r requirements.txt
+COPY ./requirements-gpu.txt .
+RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels -r requirements-gpu.txt
 
 #########
 # FINAL #
@@ -55,7 +55,7 @@ RUN apt-get install -y python3.10 python3-pip
 
 
 COPY --from=builder /usr/src/app/wheels /wheels
-COPY --from=builder /usr/src/app/requirements.txt .
+COPY --from=builder /usr/src/app/requirements-gpu.txt .
 RUN pip install --upgrade pip
 RUN pip install --no-cache /wheels/*
 
