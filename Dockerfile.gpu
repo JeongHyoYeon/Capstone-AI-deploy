@@ -1,8 +1,42 @@
+###########
+# BUILDER #
+###########
+# pull official base image
+FROM nvidia/cuda:11.8.0-base-ubuntu22.04 as builder
+
+ENV DEBIAN_FRONTEND noninteractive
+ENV TZ=Asia/Seoul
+
+
+# set work directory
+WORKDIR /usr/src/app
+
+# Install necessary system dependencies
+RUN apt-get update -y && apt-get install -y build-essential libglib2.0-0 libgl1-mesa-glx ffmpeg libsm6 libxext6
+RUN apt-get install -y nvidia-driver-530
+
+# Install Python
+RUN apt-get install -y python3.10 python3-pip
+
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+
+RUN pip install --upgrade pip
+COPY ./requirements.txt .
+RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels -r requirements.txt
+
+#########
+# FINAL #
+#########
 # pull official base image
 FROM nvidia/cuda:11.8.0-base-ubuntu22.04
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV TZ=Asia/Seoul
+
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
 
 # create necessary directories
 RUN mkdir -p /home/app
@@ -19,10 +53,12 @@ RUN apt-get install -y nvidia-driver-530
 # Install Python
 RUN apt-get install -y python3.10 python3-pip
 
-# Install Python dependencies
-COPY ./requirements-gpu.txt .
+
+COPY --from=builder /usr/src/app/wheels /wheels
+COPY --from=builder /usr/src/app/requirements.txt .
 RUN pip install --upgrade pip
-RUN pip install -r requirements-gpu.txt
+RUN pip install --no-cache /wheels/*
+
 
 # Copy the application code
 COPY . $APP_HOME
