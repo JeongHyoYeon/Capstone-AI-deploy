@@ -6,6 +6,6 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile.gpu
-    command: gunicorn app:app --bind 0.0.0.0:5000 --timeout=300
+    command: gunicorn app:app --bind 0.0.0.0:5000 --timeout=300 --workers 2
     ports:
       - "5000:5000"
