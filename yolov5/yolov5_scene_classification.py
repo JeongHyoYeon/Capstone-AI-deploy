@@ -94,7 +94,7 @@ def run_yolov5_scene(
     #model = torch.hub.load('path/to/yolov5', 'custom', path='path/to/best.pt', source='local')
     model = torch.hub.load( YOLO_CLONE_PATH, 
                            "custom", 
-                           path = os.path.join(YOLO_PATH, "checkpoint/yolov5_scene_best.pt"),  
+                           path = os.path.join(YOLO_PATH, "checkpoint/yolov5_scene_200epoch_best.pt"),
                            source = "local" )
     stride, names, pt = model.stride, model.names, model.pt
     imgsz = check_img_size(imgsz, s=stride)  # check image size
