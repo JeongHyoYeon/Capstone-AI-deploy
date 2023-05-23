@@ -88,7 +88,7 @@ def run_yolov5(images):
         BASE_PATH,
         yolov5_path,
         classification_threshold=0.6,
-        weights=os.path.join(BASE_PATH, "checkpoint/yolov5_scene_100epoch_best.pt"),
+        weights=os.path.join(BASE_PATH, "checkpoint/yolov5_scene_200epoch_best.pt"),
         source=os.path.join(BASE_PATH, "images/*.jpg"),
         nosave=True,
         device=device
