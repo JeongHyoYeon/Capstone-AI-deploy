@@ -1,9 +1,10 @@
 name: Deploy to EC2
 
-on:
-  push:
-    branches:
-      - gpu # 자동 배포 막기
+# gpu 서버 이용, 현재 서버 중단됨
+# on:
+#   push:
+#     branches:
+#       - main
 jobs:
   build:
     name: Build
